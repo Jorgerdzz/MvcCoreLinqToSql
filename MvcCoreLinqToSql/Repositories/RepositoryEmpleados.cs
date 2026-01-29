@@ -47,5 +47,25 @@ namespace MvcCoreLinqToSql.Repositories
             return empleados;
         }
 
+        public Empleado FindEmpleado(int id)
+        {
+            var consulta = from datos in this.tablaEmpleados.AsEnumerable()
+                           where datos.Field<int>("EMP_NO") == id
+                           select datos;
+            //NOSOTROS SABEMOS QUE ESTA CONSULTA DEVUELVE UNA FILA
+            //PERO linq SIEMPRE DEVUELVE UN CONJUNTO
+            //DENTRO DE ESTE CONJUNTO TENEMOS METODOS LAMBDA PARA HACER COSITAS
+            //POR EJEMPLO, PODRIAMOS CONTAR, PODRIAMOS SABEL EL MAXIMO
+            //O RECUPERAR EL PRIMER ELEMENTO DEL CONJUNTO
+            var row = consulta.First();
+            Empleado empleado = new Empleado();
+            empleado.IdEmpleado = row.Field<int>("EMP_NO");
+            empleado.Apellido = row.Field<string>("APELLIDO");
+            empleado.Oficio = row.Field<string>("OFICIO");
+            empleado.Salario = row.Field<int>("SALARIO");
+            empleado.IdDepartamento = row.Field<int>("DEPT_NO");
+            return empleado;
+        }
+
     }
 }

@@ -13,6 +13,7 @@
             <th>APELLIDO</th>
             <th>OFICIO</th>
             <th>SALARIO</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -22,6 +23,9 @@
                 <td>@empleado.Apellido</td>
                 <td>@empleado.Oficio</td>
                 <td>@empleado.Salario</td>
+                <td>
+                    <a asp-controller="Empleados" asp-action="Details" asp-route-id="@empleado.IdEmpleado">Details</a>
+                </td>
             </tr>         
         }
     </tbody>
