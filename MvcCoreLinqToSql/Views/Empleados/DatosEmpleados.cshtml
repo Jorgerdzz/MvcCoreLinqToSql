@@ -1,0 +1,62 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ResumenEmpleados
+
+<h1>Lambda Linq Empleados</h1>
+
+<form method="POST">
+    <label>Oficio: </label>
+    <select name="oficio" class="form-control">
+        @foreach(string oficio in ViewData["OFICIOS"] as List<string>)
+            {
+                <option>@oficio</option>   
+            }
+    </select>
+    <button class="btn btn-warning">Buscar empleados</button>
+</form>
+
+@if(Model != null)
+{
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-secondary">
+            Personas: @Model.Personas
+        </li>
+        <li class="list-group-item list-group-item-secondary">
+            Maximo salario: @Model.MaxSalario
+        </li>
+        <li class="list-group-item list-group-item-secondary">
+            Media salarial: @Model.MediaSalarial
+        </li>
+    </ul>
+    @if(Model.Empleados != null)
+    {
+        <table class="table table-bordered table-warning">
+            <thead>
+                <tr>
+                    <th>Apellido</th>
+                    <th>Oficio</th>
+                    <th>Salario</th>
+                    <th>Departamento</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(Empleado empleado in Model.Empleados)
+                {
+                    <tr>
+                        <td>@empleado.Apellido</td>
+                        <td>@empleado.Oficio</td>
+                        <td>@empleado.Salario</td>
+                        <td>@empleado.IdDepartamento</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h3 style="color:rebeccapurple">No existen empleados</h3>
+    }
+} 
