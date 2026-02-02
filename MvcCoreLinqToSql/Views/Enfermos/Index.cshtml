@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Enfermo>
+
+<h1>Enfermos Linq To Sql</h1>
+
+@if(Model != null)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>APELLIDO</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        @foreach(Enfermo enfermo in Model)
+        {
+            <tr>
+                <td>@enfermo.Apellido</td>
+                <td>
+                    <a class="btn btn-dark" asp-controller="Enfermos" asp-action="Details" asp-route-id="@enfermo.Inscripcion">Details</a>
+                    <a class ="btn btn-danger" asp-controller="Enfermos" asp-action="Delete" asp-route-id="@enfermo.Inscripcion">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+}

@@ -34,7 +34,15 @@ namespace MvcCoreLinqToSql.Controllers
         public IActionResult BuscadorEmpleados(string oficio, int salario)
         {
             List<Empleado> empleados = this.repo.GetEmpleadosOficioSalario(oficio, salario);
-            return View(empleados);
+            if(empleados == null)
+            {
+                ViewData["MENSAJE"] = "No se han encontrado empleados";
+                return View();
+            }
+            else
+            {
+                return View(empleados);
+            }
         }
 
     }
