@@ -25,5 +25,17 @@ namespace MvcCoreLinqToSql.Controllers
             return View(emp);
         }
 
+        public IActionResult BuscadorEmpleados()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult BuscadorEmpleados(string oficio, int salario)
+        {
+            List<Empleado> empleados = this.repo.GetEmpleadosOficioSalario(oficio, salario);
+            return View(empleados);
+        }
+
     }
 }
